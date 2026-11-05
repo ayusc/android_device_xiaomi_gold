@@ -1,0 +1,28 @@
+From 31d58c8bfb5779d4b92816ac85850e7168d19d84 Mon Sep 17 00:00:00 2001
+From: Ayus Chatterjee <ayuschatterjee2003@gmail.com>
+Date: Thu, 5 Nov 2026 08:42:44 +0000
+Subject: [PATCH] system/core: kaeru bypass lock and avb checks
+
+---
+ fastboot/device/utility.cpp | 4 ----
+ 1 file changed, 4 deletions(-)
+
+diff --git a/fastboot/device/utility.cpp b/fastboot/device/utility.cpp
+index 3c5726d5b..0652d9399 100644
+--- a/fastboot/device/utility.cpp
++++ b/fastboot/device/utility.cpp
+@@ -195,11 +195,7 @@ std::vector<std::string> ListPartitions(FastbootDevice* device) {
+ }
+ 
+ bool GetDeviceLockStatus() {
+-#ifdef FASTBOOT_BYPASS_LOCK_STATE
+     return false;
+-#else
+-    return android::base::GetProperty("ro.boot.verifiedbootstate", "") == "green";
+-#endif
+ }
+ 
+ bool UpdateAllPartitionMetadata(FastbootDevice* device, const std::string& super_name,
+-- 
+2.43.0
+

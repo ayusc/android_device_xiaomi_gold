@@ -1,0 +1,40 @@
+From 49359fc97cfb143208ede8bf1cfade9d6c94df33 Mon Sep 17 00:00:00 2001
+From: Ayus Chatterjee <ayuschatterjee2003@gmail.com>
+Date: Thu, 5 Nov 2026 02:43:15 +0800
+Subject: [PATCH] PowerOffAlarm: Force strict 64-bit compilation only
+
+Change-Id: I0414787b020d2a10f8eaaef1e9e343339598692c
+---
+ packages/PowerOffAlarm/Android.bp | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/packages/PowerOffAlarm/Android.bp b/packages/PowerOffAlarm/Android.bp
+index ffb9fb2..e0feb58 100644
+--- a/packages/PowerOffAlarm/Android.bp
++++ b/packages/PowerOffAlarm/Android.bp
+@@ -4,6 +4,7 @@
+  */
+ 
+ android_app {
++    compile_multilib: "64",
+     name: "PowerOffAlarm",
+ 
+     srcs: ["java/**/*.java"],
+@@ -25,12 +26,14 @@ android_app {
+ 
+ cc_library {
+     name: "libjni_poweroffalarm",
++    compile_multilib: "64",
+     srcs: [
+         "jni/AlarmDriver.cpp",
+         "jni/RtcDriver.cpp",
+         "jni/TimerFdDriver.cpp",
+     ],
+     cflags: [
++        "-D_LINUX_SCHED_TYPES_H",
+         "-Werror",
+         "-Wall",
+         "-Wextra",
+-- 
+2.43.0
+

@@ -1,0 +1,28 @@
+From e748cb4f28dd6e73af85f8e07215ea5366cba1df Mon Sep 17 00:00:00 2001
+From: Ayus Chatterjee <ayuschatterjee2003@gmail.com>
+Date: Tue, 3 Nov 2026 12:12:27 +0800
+Subject: [PATCH] boot: Define _LINUX_SCHED_TYPES_H to fix sched_param
+ redefinition
+
+Change-Id: If17ae4218000eab1c4714b16cf97b4aa73b42ec4
+---
+ aidl/boot/Android.bp | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/aidl/boot/Android.bp b/aidl/boot/Android.bp
+index 0fb06b4..264ac4b 100644
+--- a/aidl/boot/Android.bp
++++ b/aidl/boot/Android.bp
+@@ -13,6 +13,9 @@ cc_defaults {
+     name: "android.hardware.boot-service_mediatek_common",
+     relative_install_path: "hw",
+     defaults: ["libboot_control_defaults"],
++    cflags: [
++        "-D_LINUX_SCHED_TYPES_H",
++    ],
+     srcs: [
+         "main.cpp",
+         "BootControl.cpp",
+-- 
+2.43.0
+

@@ -1,0 +1,29 @@
+From b206c2452c5731a301f5dbc5802b336e7ae1b55f Mon Sep 17 00:00:00 2001
+From: Ayus Chatterjee <ayuschatterjee2003@gmail.com>
+Date: Thu, 5 Nov 2026 13:10:44 +0000
+Subject: [PATCH] libfs_avb: Allow LKs patched with kaeru/fenrir to boot on
+ AOSP
+
+---
+ libfs_avb/util.cpp | 4 ----
+ 1 file changed, 4 deletions(-)
+
+diff --git a/libfs_avb/util.cpp b/libfs_avb/util.cpp
+index 1362961..77d20fa 100644
+--- a/libfs_avb/util.cpp
++++ b/libfs_avb/util.cpp
+@@ -111,11 +111,7 @@ bool IsDeviceUnlocked() {
+     std::string verified_boot_state;
+ 
+     if (fs_mgr_get_boot_config("verifiedbootstate", &verified_boot_state)) {
+-#ifdef FASTBOOT_BYPASS_LOCK_STATE
+     return (verified_boot_state == "orange" || verified_boot_state == "green");
+-#else
+-    return verified_boot_state == "orange";
+-#endif
+     }
+     return false;
+ }
+-- 
+2.43.0
+

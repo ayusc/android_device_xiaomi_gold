@@ -6,8 +6,7 @@
 -->
 <resources>
     <!-- LineageOS has no pages for this device; these builds are published and tracked here. -->
-    <string name="menu_changelog_url" translatable="false">https://github.com/ayusc/lineageos-gold/releases</string>
-    <string name="report_issue_url" translatable="false">https://github.com/ayusc/lineageos-gold/issues</string>
-    <string name="blocked_update_info_url" translatable="false">https://github.com/ayusc/lineageos-gold#before-installing</string>
-    <string name="updater_server_url" translatable="false">https://raw.githubusercontent.com/ayusc/lineageos-gold/main/updates/rk/{incremental}.json</string>
+    <string name="menu_changelog_url" translatable="false">https://github.com/Star-caorui/lineageos-gold/releases</string>
+    <string name="report_issue_url" translatable="false">https://github.com/Star-caorui/lineageos-gold/issues</string>
+    <string name="blocked_update_info_url" translatable="false">https://github.com/Star-caorui/lineageos-gold#before-installing</string>
 </resources>

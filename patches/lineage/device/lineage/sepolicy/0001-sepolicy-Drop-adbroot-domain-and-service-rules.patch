@@ -1,0 +1,108 @@
+From b213cc7bf2da0803d3f61997650d517502d66daa Mon Sep 17 00:00:00 2001
+From: ayusc <ayuschatterjee2003@gmail.com>
+Date: Mon, 9 Nov 2026 19:49:52 +0000
+Subject: [PATCH] sepolicy: Drop adbroot domain and service rules
+
+---
+ common/private/adbd.te          |  2 --
+ common/private/adbroot.te       | 17 -----------------
+ common/private/file.te          |  2 +-
+ common/private/file_contexts    |  4 ++--
+ common/private/service.te       |  2 +-
+ common/private/service_contexts |  2 +-
+ common/private/system_server.te |  2 +-
+ 7 files changed, 6 insertions(+), 25 deletions(-)
+
+diff --git a/common/private/adbd.te b/common/private/adbd.te
+index e5ef587..e69de29 100644
+--- a/common/private/adbd.te
++++ b/common/private/adbd.te
+@@ -1,2 +0,0 @@
+-allow adbd adbroot:binder call;
+-allow adbd adbroot_service:service_manager find;
+diff --git a/common/private/adbroot.te b/common/private/adbroot.te
+index 828ce90..e69de29 100644
+--- a/common/private/adbroot.te
++++ b/common/private/adbroot.te
+@@ -1,17 +0,0 @@
+-type adbroot, domain, coredomain;
+-type adbroot_exec, exec_type, file_type, system_file_type;
+-
+-init_daemon_domain(adbroot)
+-
+-binder_use(adbroot)
+-binder_service(adbroot)
+-add_service(adbroot, adbroot_service)
+-
+-allow adbroot package_native_service:service_manager find;
+-binder_call(adbroot, system_server)
+-
+-allow adbroot adbroot_data_file:dir rw_dir_perms;
+-allow adbroot adbroot_data_file:file create_file_perms;
+-
+-set_prop(adbroot, shell_prop)
+-set_prop(adbroot, ctl_adbd_prop)
+diff --git a/common/private/file.te b/common/private/file.te
+index 833ab6c..a3fe8f3 100644
+--- a/common/private/file.te
++++ b/common/private/file.te
+@@ -1,5 +1,5 @@
+ type sdcard_posix, sdcard_type, sdcard_posix_contextmount_type, fs_type, mlstrustedobject;
+-type adbroot_data_file, file_type, data_file_type, core_data_file_type;
++# type adbroot_data_file, file_type, data_file_type, core_data_file_type;
+ type sysfs_perdev_minors, fs_type, sysfs_type;
+ 
+ # Pocket judge
+diff --git a/common/private/file_contexts b/common/private/file_contexts
+index d3e2bc4..1027c95 100644
+--- a/common/private/file_contexts
++++ b/common/private/file_contexts
+@@ -13,8 +13,8 @@
+ /system/bin/backuptool_postinstall\.sh            u:object_r:postinstall_exec:s0
+ 
+ # ADB Root
+-/(system_ext|system/system_ext)/bin/adb_root      u:object_r:adbroot_exec:s0
+-/data/adbroot(/.*)?        u:object_r:adbroot_data_file:s0
++# /(system_ext|system/system_ext)/bin/adb_root      u:object_r:adbroot_exec:s0
++# /data/adbroot(/.*)?        u:object_r:adbroot_data_file:s0
+ 
+ # Bash
+ /(system_ext|system/system_ext)/bin/bash          u:object_r:shell_exec:s0
+diff --git a/common/private/service.te b/common/private/service.te
+index ca2990d..627a9f7 100644
+--- a/common/private/service.te
++++ b/common/private/service.te
+@@ -1,4 +1,4 @@
+-type adbroot_service,                   service_manager_type;
++# type adbroot_service,                   service_manager_type;
+ type ax_sandbox_service, system_api_service, system_server_service, service_manager_type;
+ type lineage_hardware_service, system_api_service, system_server_service, service_manager_type;
+ type lineage_health_interface_service, system_api_service, system_server_service, service_manager_type;
+diff --git a/common/private/service_contexts b/common/private/service_contexts
+index 96e7bfa..324fdc7 100644
+--- a/common/private/service_contexts
++++ b/common/private/service_contexts
+@@ -6,7 +6,7 @@ lineagesensitivephone                     u:object_r:lineage_sensitive_phone_num
+ lineagetrust                              u:object_r:lineage_trust_service:s0
+ profile                                   u:object_r:lineage_profile_service:s0
+ 
+-adbroot_service                           u:object_r:adbroot_service:s0
++# adbroot_service                           u:object_r:adbroot_service:s0
+ ax_sandbox                                u:object_r:ax_sandbox_service:s0
+ pocket                                    u:object_r:pocket_service:s0
+ 
+diff --git a/common/private/system_server.te b/common/private/system_server.te
+index 0200129..071be37 100644
+--- a/common/private/system_server.te
++++ b/common/private/system_server.te
+@@ -1,6 +1,6 @@
+ allow system_server storage_stub_file:dir getattr;
+ 
+-allow system_server adbroot_service:service_manager find;
++# allow system_server adbroot_service:service_manager find;
+ 
+ add_service(system_server, ax_sandbox_service);
+ 
+-- 
+2.43.0
+

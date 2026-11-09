@@ -1,0 +1,63 @@
+From a77d1dc87d011994fe87e51f62c232e160307192 Mon Sep 17 00:00:00 2001
+From: ayusc <ayuschatterjee2003@gmail.com>
+Date: Mon, 9 Nov 2026 19:53:54 +0000
+Subject: [PATCH] Updater: Point server and changelog URLs to gold repository
+
+---
+ app/src/main/res/values/strings.xml | 19 +++++++++----------
+ 1 file changed, 9 insertions(+), 10 deletions(-)
+
+diff --git a/app/src/main/res/values/strings.xml b/app/src/main/res/values/strings.xml
+index 537e72e..43925c6 100644
+--- a/app/src/main/res/values/strings.xml
++++ b/app/src/main/res/values/strings.xml
+@@ -30,10 +30,10 @@
+         Optional placeholders replaced at runtime:
+           {device} - Device name
+     -->
+-    <string name="updater_server_url_gapps" translatable="false">https://raw.githubusercontent.com/RisingOS-Revived/official_devices/fifteen/OTA/device/GAPPS/{device}.json</string>
+-    <string name="updater_server_url_core" translatable="false">https://raw.githubusercontent.com/RisingOS-Revived/official_devices/fifteen/OTA/device/CORE/{device}.json</string>
+-    <string name="updater_server_url_vanilla" translatable="false">https://raw.githubusercontent.com/RisingOS-Revived/official_devices/fifteen/OTA/device/VANILLA/{device}.json</string>
+-    <string name="updater_server_url_microg" translatable="false">https://raw.githubusercontent.com/RisingOS-Revived/official_devices/fifteen/OTA/device/MICROG/{device}.json</string>
++    <string name="updater_server_url_gapps" translatable="false">https://raw.githubusercontent.com/ayusc/lineageos-gold/main/updates/{device}.json</string>
++    <string name="updater_server_url_core" translatable="false">https://raw.githubusercontent.com/ayusc/lineageos-gold/main/updates/{device}.json</string>
++    <string name="updater_server_url_vanilla" translatable="false">https://raw.githubusercontent.com/ayusc/lineageos-gold/main/updates/{device}.json</string>
++    <string name="updater_server_url_microg" translatable="false">https://raw.githubusercontent.com/ayusc/lineageos-gold/main/updates/{device}.json</string>
+ 
+     <string name="verification_failed_notification">Verification failed</string>
+     <string name="verifying_download_notification">Verifying update</string>
+@@ -66,9 +66,9 @@
+     <string name="dialog_scratch_mounted_message">
+         <![CDATA[
+         Please run the following commands and retry the update:\n
+-        • adb root\n
+-        • adb enable-verity\n
+-        • adb reboot
++- adb root\n
++- adb enable-verity\n
++- adb reboot
+         ]]>
+     </string>
+     <string name="dialog_scratch_mounted_title">Cannot install update with OverlayFS mounted</string>
+@@ -87,7 +87,7 @@
+     <string name="menu_copy_url">Copy URL</string>
+     <string name="menu_export_update">Export update</string>
+     <string name="menu_show_changelog">Show changelog</string>
+-    <string name="menu_changelog_url" translatable="false">https://raw.githubusercontent.com/RisingOS-Revived/official_devices/refs/heads/fifteen/OTA/changelogs/<xliff:g id="device_name">%1$s</xliff:g>.txt</string>
++    <string name="menu_changelog_url" translatable="false">https://raw.githubusercontent.com/ayusc/lineageos-gold/main/changelog.txt</string>
+     <string name="menu_ab_perf_mode">Prioritize update process</string>
+     <string name="menu_update_recovery">Update recovery</string>
+     <string name="toast_forced_update_recovery">It is impossible to disable RisingOS_Revived Recovery updates on this device.</string>
+@@ -176,7 +176,6 @@
+     <string name="local_update_import_failure">Failed to import local update</string>
+     <string name="local_update_import_install">Install</string>
+     <string name="local_update_name">Local update</string>
+-
+     <string name="welcome_title">Welcome</string>
+     <string name="welcome_message">Please note that when multiple updates are available, there is no need to go update-by-update, you can always install the latest one directly, and then safely delete old updates to free up storage space.</string>
+-</resources>
++</resources>
+\ No newline at end of file
+-- 
+2.43.0
+

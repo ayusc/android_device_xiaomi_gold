@@ -26,20 +26,8 @@ PRODUCT_MODEL := 2312DRAABG
 
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
 
-# Shown in the LineageOS version in Settings: 24.0-<date>-UNOFFICIAL-Betterr-gold
-TARGET_UNOFFICIAL_BUILD_ID := ayus
-
 # The Dolby app is the audio effects panel
 TARGET_EXCLUDES_AUDIOFX := true
-
-# LineageOS's own apps: Trebuchet and the updater, with the list of published
-# builds
-PRODUCT_PACKAGES += \
-    LauncherOverlayGold \
-    UpdaterOverlayGold
-
-PRODUCT_PRODUCT_PROPERTIES += \
-    lineage.updater.uri=https://raw.githubusercontent.com/ayusc/lineageos-gold/main/updates/rk/{incr}.json
 
 # Lunch banner maintainer variable
 RISING_MAINTAINER="Ayus"
@@ -48,7 +36,7 @@ RISING_MAINTAINER="Ayus"
 # Set RISING_MAINTAINER for version control 
 # (Optional if builder is setting properties via init_<device>.cpp)
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    RisingChipset="Dimensity 700" \
+    RisingChipset="Dimensity 6080" \
     RisingMaintainer="Ayus"
 
 # Disable/enable blur support, false by default
@@ -59,3 +47,11 @@ PRODUCT_NO_CAMERA := false
 
 # Core Gapps
 WITH_GMS := true
+
+# Signing keys
+PRODUCT_DEFAULT_DEV_CERTIFICATE := vendor/lineage-priv/keys/releasekey
+PRODUCT_OTA_PUBLIC_KEYS := vendor/lineage-priv/keys/releasekey
+
+# Embed developer ADB key for recovery root access
+PRODUCT_COPY_FILES += \
+    vendor/lineage-priv/keys/adbkey.pub:root/adb_keys

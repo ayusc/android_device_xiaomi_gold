@@ -53,5 +53,6 @@ PRODUCT_DEFAULT_DEV_CERTIFICATE := vendor/lineage-priv/keys/releasekey
 PRODUCT_OTA_PUBLIC_KEYS := vendor/lineage-priv/keys/releasekey
 
 # Embed developer ADB key for recovery root access
+# Only the maintainer has access to adb in authorised state
 PRODUCT_COPY_FILES += \
     vendor/lineage-priv/keys/adbkey.pub:root/adb_keys
